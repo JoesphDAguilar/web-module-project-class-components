@@ -5,24 +5,51 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      task: this.task,
-      id: this.id,
-      completed: false
+      todo: [
+        {
+          name: 'Organize Garage',
+          id: 1528817077286, // could look different, you could use a timestamp to generate it
+          completed: false
+        },
+        {
+          name: 'Bake Cookies',
+          id: 1528817084358,
+          completed: false
+        },
+        {
+          name: 'Walk The Dog',
+          id: 1152881705643,
+          completed: false
+        },
+        {
+          name: 'Learn React',
+          id: 1152881703455,
+          completed: false,
+        },
+        {
+          name: 'Have Fun',
+          id: 1152881709347,
+          completed: false,
+        }
+      ]
     }
   }
   render() {
+    const { todo } = this.state;
     return (
       <div>
         <h1>Todo App</h1>
         <ul>
-          <li>Walk the dog</li>
-          <li>Learn React</li>
-          <li>Have Fun</li>
+          {
+            todo.map(todo => {
+              return(<li key={todo.id}>{todo.name}</li>)
+            })
+          }
         </ul>
 
         <form>
-          <input />
-          <button>Add to list</button>
+          <input placeholder='Enter new task'/>
+          <button>Add</button>
         </form>
         <button>Clear</button>
       </div>
