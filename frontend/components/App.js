@@ -1,4 +1,6 @@
 import React from 'react'
+import Todo from './Todo';
+import TodoList from './TodoList';
 
 
 export default class App extends React.Component {
@@ -39,13 +41,8 @@ export default class App extends React.Component {
     return (
       <div>
         <h1>Todo App</h1>
-        <ul>
-          {
-            todo.map(todo => {
-              return(<li key={todo.id}>{todo.name}</li>)
-            })
-          }
-        </ul>
+
+        <TodoList todo={todo}/>
 
         <form>
           <input placeholder='Enter new task'/>
