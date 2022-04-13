@@ -59,12 +59,29 @@ export default class App extends React.Component {
     })
   }
 
+  onToggle = (clickedId) => {
+
+    this.setState({
+      ...this.state,
+      todo: this.state.todo.map(todo => {
+        if(todo.id === clickedId) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+
+          }
+        }
+        return todo
+      })
+    })
+  }
+
   render() {
     const { todo } = this.state;
     return (
       <div>
         <h1>Todo App</h1>
-        <TodoList todo={todo}/>
+        <TodoList onToggle={this.onToggle} todo={todo}/>
         <Form onSubmit={this.onSubmit} />
         <button onClick={this.clearComplete}>Clear</button>
       </div>
