@@ -35,14 +35,38 @@ export default class App extends React.Component {
       ]
     }
   }
+
+  onSubmit = (task) => {
+
+    const newTodo = {
+      name: task,
+      id: 120323040,
+      completed: false
+    }
+
+    this.setState({
+      ...this.state,
+      todo: [...this.state.todo, newTodo]
+    })
+  }
+  
+  clearComplete = () => {
+    this.setState({
+      ...this.state,
+      todo: this.state.todo.filter(todo => {
+        return(todo.completed === false);
+      })
+    })
+  }
+
   render() {
     const { todo } = this.state;
     return (
       <div>
         <h1>Todo App</h1>
-
         <TodoList todo={todo}/>
-        <Form />
+        <Form onSubmit={this.onSubmit} />
+        <button onClick={this.clearComplete}>Clear</button>
       </div>
     )
   }
